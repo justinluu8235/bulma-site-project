@@ -4,10 +4,10 @@ let headlineElement = document.querySelector('#headline');/// --> data[i].headli
 let summaryElement = document.querySelector('#summary-short'); /// data[i].summary_short
 let searchForm = document.querySelector('#search-form');
 let searchInput = document.getElementById("query");
-
+let cards = document.getElementById('app');
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    
     searchForm.addEventListener("submit", fetchFromNYTimes);
 
 
@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 function fetchFromNYTimes(event) {
     event.preventDefault();
+
     API_URL = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=' + searchInput.value + '&api-key=8L0mksGfCzIBHcSP1lpQJJO4F9103Hrp';
     fetchResults = fetch(API_URL);
     fetchResults.then(function (response) {
@@ -27,26 +29,30 @@ function fetchFromNYTimes(event) {
         data = data.results.filter(function (item) {
             // Filter for image posts (remove text posts)
             return item.display_title != '';
-          });
-          console.log(data[1].link.url);
+        });
 
-        for(let i=0; i<cardsData.length || i<data.length; i++){
+        let anchorElementList = document.querySelectorAll('#link');
+        console.log(anchorElementList);
+        for (let i = 0; i < cardsData.length || i < data.length; i++) {
             cardsData[i].user.title = data[i].display_title;
-            cardsData[i].user.handle = data[i].opening_date;
+            cardsData[i].user.handle = "Date Released: " + data[i].opening_date;
             cardsData[i].user.name = "Article name: " + data[i].headline;
             let summaryShort = data[i].summary_short
-            console.log(summaryShort);
-            if(summaryShort.length > 150){
-                summaryShort = summaryShort.slice(0,150);
+
+            if (summaryShort.length > 150) {
+                summaryShort = summaryShort.slice(0, 150);
             }
             cardsData[i]['content'] = summaryShort;
             //let anchor = '<a href="' + data[i].link.url + '">' +'Read more at NY Times</a>';
-            //cardsData[i]['content'] += anchor;
+
+            anchorElementList[i].href = data[i].link.url;
+            
+
         }
 
 
     });
-    
+
 }
 
 
@@ -71,7 +77,8 @@ let cardsData = [{
         handle: 'twitterid',
         title: 'Lead Developer'
     },
-    content: 'The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.'
+    content: 'The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.',
+    link: 'Read Me'
 },
 {
     id: 1,
@@ -83,6 +90,7 @@ let cardsData = [{
         title: 'Lead Developer'
     },
     content: 'The Beast stumbled in the dark for it could no longer see the path. It started to fracture and weaken, trying to reshape itself into the form of metal. Even the witches would no longer lay eyes upon it, for it had become hideous and twisted.'
+
 },
 {
     id: 1,

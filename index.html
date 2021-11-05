@@ -57,16 +57,19 @@
       <div class="section">
         <div class="columns">
           <div class="column has-text-centered">
+            <div id='title'>
+              <h1>Search for NY Time Movie Reviews!</h1>
+            </div>
             <form id="search-form">
                 <div>
-                  <input type="text" class="search-input" id="query" placeholder="Search for Movies"/>
+                  <input type="text" class="search-input" id="query" placeholder="Enter Movie Title"/>
                 </div>
                 <div class="divider"></div>
                 <input type="submit" value="Go"/>
               </form>
           </div>
         </div>
-        <div id="app" class="row columns is-multiline">
+        <div id="app" class="row columns is-multiline hidden" >
           <div v-for="card in cardData" key="card.id" class="column is-4">
             <div class="card large">
               
@@ -83,8 +86,12 @@
                 </div>
                 <div class="content" id='summary-short'>
                   {{card.content}} 
+       
+                  <a href=''id='link'>
+                    <span class="title is-6" >
+                      <br><p>...Read more at NY Times</p></span> </a>
                   <div class="background-icon"><span class="icon-twitter"></span></div>
-                  <a>Read more...</a>
+                  <a></a>
                 </div>
               </div>
             </div>

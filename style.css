@@ -59,7 +59,7 @@
     margin: 10px
   }
 
-  #search-form > input[type="submit"]{
+   #search-form > input[type="submit"]{
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.26);
     border-radius:15px;
@@ -70,17 +70,26 @@
     padding: 1em 2em;
     margin-top: 3em;
     }
+    #title{
+      letter-spacing: 2px;
+      color: grey;
+      font-size:50px;
+    }
   
-  .search-input {
+   .search-input {
     border: 1px solid rgba(255, 255, 255, 0.26);
     border-radius:30px;
     outline: 0;
     padding: 20px;
-    line-height: 48px;
+    line-height: 40px;
     background-color: transparent;
-    font-size: 46px;
+    width: 800px;
+    font-size: 35px;
     color: white;
     text-align:center;
+  }
+  .hidden{
+    display:none;
   }
   © 2021 GitHub, Inc.
   Terms
